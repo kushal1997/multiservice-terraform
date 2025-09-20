@@ -214,7 +214,7 @@ http://<frontend-url>:3002/health
 
 - *Screenshot (frontend hitting APIs & Mongo Atlas):*
 
-<p align="center"> <img src="./screenshots/ after_terraform_frontend_able_to hit all_apis_acessing_mongo_atlas.png" width="800" alt="Frontend able to hit all APIs and access Mongo Atlas" /> </p>
+<p align="center"> <img src="./screenshots/after_terraform_frontend_able_to hit all_apis_acessing_mongo_atlas.png" width="800" alt="Frontend able to hit all APIs and access Mongo Atlas" /> </p>
 
 <br>
 
