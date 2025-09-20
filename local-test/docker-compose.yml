@@ -1,0 +1,101 @@
+version: "3.8"
+
+networks:
+  multiverse_net:
+    driver: bridge
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: multiverse_mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - multiverse_net
+
+  user:
+    image: noizy23yo/multiverse-terraform:user_service_v1
+    container_name: multiverse_user
+    restart: unless-stopped
+    environment:
+      - PORT=3001
+      - MONGODB_URI=mongodb://mongo:27017/ecommerce_users
+      - JWT_SECRET=your-jwt-secret-key
+    ports:
+      - "3001:3001"
+    networks:
+      - multiverse_net
+    depends_on:
+      - mongo
+
+  product:
+    image: noizy23yo/multiverse-terraform:product_service_v1
+    container_name: multiverse_product
+    restart: unless-stopped
+    environment:
+      - PORT=3002
+      - MONGODB_URI=mongodb://mongo:27017/ecommerce_products
+    ports:
+      - "3002:3002"
+    networks:
+      - multiverse_net
+    depends_on:
+      - mongo
+
+  cart:
+    image: noizy23yo/multiverse-terraform:cart_service_v1
+    container_name: multiverse_cart
+    restart: unless-stopped
+    environment:
+      - PORT=3003
+      - MONGODB_URI=mongodb://mongo:27017/ecommerce_carts
+      - PRODUCT_SERVICE_URL=http://product:3002
+    ports:
+      - "3003:3003"
+    networks:
+      - multiverse_net
+    depends_on:
+      - mongo
+      - product
+
+  order:
+    image: noizy23yo/multiverse-terraform:order_service_v1
+    container_name: multiverse_order
+    restart: unless-stopped
+    environment:
+      - PORT=3004
+      - MONGODB_URI=mongodb://mongo:27017/ecommerce_orders
+      - CART_SERVICE_URL=http://cart:3003
+      - PRODUCT_SERVICE_URL=http://product:3002
+      - USER_SERVICE_URL=http://user:3001
+    ports:
+      - "3004:3004"
+    networks:
+      - multiverse_net
+    depends_on:
+      - mongo
+      - cart
+      - product
+      - user
+
+  frontend:
+    image: noizy23yo/multiverse-terraform:fe_v2
+    container_name: multiverse_frontend
+    restart: unless-stopped
+    volumes:
+      - ./nginx:/etc/nginx/conf.d:ro
+    ports:
+      - "8080:80"
+    networks:
+      - multiverse_net
+    depends_on:
+      - user
+      - product
+      - cart
+      - order
+
+volumes:
+  mongo_data:

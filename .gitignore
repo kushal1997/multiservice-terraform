@@ -137,3 +137,29 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Terraform local state & crash logs
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+crash.log
+crash.*.log
+
+# Ignore variable files that may contain secrets
+terraform-deploy/.terraform.lock.hcl
+terraform.tfvars
+terraform.tfvars.json
+terraform-deploy/variables.tf
+
+# Provider plugins (optional local vendor)
+.terraform/plugins/
+# Lock file: you can choose to commit .terraform.lock.hcl for reproducible providers.
+# Keep it if you want deterministic provider versions; remove/comment to ignore.
+# .terraform.lock.hcl
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
