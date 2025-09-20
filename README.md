@@ -16,17 +16,17 @@ It is written to be a reference for reproducibility, handover and grading.
 
 ## Table of Contents
 
-- [Project layout & files](#project-layout--files)  
-- [Prerequisites](#prerequisites)  
-- [Local dry-run (Docker Compose)](#local-dry-run-docker-compose)  
-- [Terraform deployment (AWS)](#terraform-deployment-aws)  
-  - [Initialize & validate](#initialize--validate)  
-  - [Plan & Apply](#plan--apply)  
-  - [Verify services & connectivity](#verify-services--connectivity)  
-  - [Destroy / Cleanup](#destroy--cleanup)  
-- [Troubleshooting & notes](#troubleshooting--notes)  
-- [Screenshots](#screenshots)  
-- [Appendix — useful commands & files](#appendix--useful-commands--files)
+- [Project layout \& files](#project-layout--files)
+  - [Prerequisites](#prerequisites)
+  - [Local dry-run (Docker Compose)](#local-dry-run-docker-compose)
+  - [Terraform deployment (AWS)](#terraform-deployment-aws)
+    - [Initialize \& validate](#initialize--validate)
+    - [Plan \& Apply](#plan--apply)
+    - [Verify services \& connectivity](#verify-services--connectivity)
+    - [Destroy / Cleanup](#destroy--cleanup)
+  - [Troubleshooting \& notes](#troubleshooting--notes)
+  - [Appendix - useful commands and files](#appendix---useful-commands-and-files)
+  - [Conclusion](#conclusion)
 
 ---
 
