@@ -276,7 +276,7 @@ terraform destroy
 
 ---
 
-## Appendix — useful commands & tips
+## Appendix - useful commands and files
 
 - Terraform:
 ```bash
